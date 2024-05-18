@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const UserRepository = require('../../infraestructure/databases/UserRepository');  
+const UserRepository = require('../../infrastructure/databases/UserRepository');  
 class UserService {
     constructor() {
         this.userRepository = new UserRepository();

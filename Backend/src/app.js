@@ -1,8 +1,8 @@
 const express = require('express');
 const dotenv = require('dotenv');
-const routes = require('./infraestructure/web/routes');
+const routes = require('./infrastructure/web/routes');
 const sequelize = require('./config/database');
-const errorHandler = require('./infraestructure/web/middlewares/errorHandler');
+const errorHandler = require('./infrastructure/web/middlewares/errorHandler');
 
 dotenv.config();
 console.log('DB_NAME:', process.env.DB_NAME);
