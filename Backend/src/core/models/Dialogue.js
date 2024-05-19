@@ -26,7 +26,9 @@ Dialogue.init({
         allowNull: false,
         references: {
             model: 'SceneParts',
-            key: 'id'
+            key: 'id',
+            onDelete: 'CASCADE', // Elimina Dialogue cuando se elimina un ScenePart
+            onUpdate: 'CASCADE'
         }
     }
 }, {
@@ -34,7 +36,7 @@ Dialogue.init({
     modelName: 'Dialogue'
 });
 
-Dialogue.belongsTo(ScenePart, { foreignKey: 'scenePartId' });
-ScenePart.hasMany(Dialogue, { foreignKey: 'scenePartId' });
+Dialogue.belongsTo(ScenePart, { foreignKey: 'scenePartId', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
+ScenePart.hasMany(Dialogue, { foreignKey: 'scenePartId', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
 
 module.exports = Dialogue;

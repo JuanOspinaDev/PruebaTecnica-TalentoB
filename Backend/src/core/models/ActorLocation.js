@@ -34,7 +34,9 @@ ActorLocation.init({
         allowNull: false,
         references: {
             model: 'SceneParts',
-            key: 'id'
+            key: 'id',
+            onDelete: 'CASCADE', // Elimina ActorLocations cuando se elimina un ScenePart
+            onUpdate: 'CASCADE'
         }
     }
 }, {
@@ -42,7 +44,7 @@ ActorLocation.init({
     modelName: 'ActorLocation'
 });
 
-ActorLocation.belongsTo(ScenePart, { foreignKey: 'scenePartId' });
-ScenePart.hasMany(ActorLocation, { foreignKey: 'scenePartId' });
+ActorLocation.belongsTo(ScenePart, { foreignKey: 'scenePartId', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
+ScenePart.hasMany(ActorLocation, { foreignKey: 'scenePartId', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
 
 module.exports = ActorLocation;

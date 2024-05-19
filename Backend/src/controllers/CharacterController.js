@@ -1,4 +1,5 @@
 const CharacterService = require('../core/services/CharacterService');
+const ChangeLogService = require('../core/services/ChangeLogService');
 const { validationResult } = require('express-validator');
 
 class CharacterController {

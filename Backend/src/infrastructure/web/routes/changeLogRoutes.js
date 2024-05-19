@@ -1,7 +1,6 @@
 const express = require('express');
-const ChangeLogController = require('../controllers/ChangeLogController');
+const ChangeLogController = require('../../../controllers/ChangeLogController');
 const authMiddleware = require('../middlewares/authMiddleware');
-const authorizeRole = require('../middlewares/authorizeRol');
 
 const router = express.Router();
 

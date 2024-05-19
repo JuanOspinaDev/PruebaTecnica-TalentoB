@@ -1,4 +1,5 @@
 const ScenePartService = require('../core/services/ScenePartService');
+const ChangeLogService = require('../core/services/ChangeLogService');
 const { validationResult } = require('express-validator');
 
 class ScenePartController {
@@ -9,11 +10,13 @@ class ScenePartController {
         }
         try {
             const scenePart = await ScenePartService.createScenePart(req.body);
+            console.log(req.params.scriptId)
             await ChangeLogService.logChange({
                 entity: 'ScenePart',
                 changeType: 'create',
                 changeDetails: req.body,
                 userId: req.user.id,
+                username: req.user.username,
                 scriptId: req.params.scriptId
             });
             res.status(201).json(scenePart);
@@ -58,6 +61,7 @@ class ScenePartController {
                 changeType: 'update',
                 changeDetails: req.body,
                 userId: req.user.id,
+                username: req.user.username,
                 scriptId: req.params.scriptId
             });
             res.status(200).json({ message: 'ScenePart updated successfully' });

@@ -14,7 +14,9 @@ ScenePart.init({
         allowNull: false,
         references: {
             model: 'Scenes',
-            key: 'id'
+            key: 'id',
+            onDelete: 'CASCADE', // Elimina ScenePart cuando se elimina una Scene
+            onUpdate: 'CASCADE'
         }
     },
     order: {
@@ -26,7 +28,7 @@ ScenePart.init({
     modelName: 'ScenePart'
 });
 
-ScenePart.belongsTo(Scene, { foreignKey: 'sceneId' });
-Scene.hasMany(ScenePart, { foreignKey: 'sceneId' });
+ScenePart.belongsTo(Scene, { foreignKey: 'sceneId', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
+Scene.hasMany(ScenePart, { foreignKey: 'sceneId', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
 
 module.exports = ScenePart;

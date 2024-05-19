@@ -10,7 +10,7 @@ class ScriptController {
         }
         try {
             const script = await scriptService.createScript(req.body);
-
+            console.log(req.user)
             await ChangeLogService.logChange({
                 entity: 'Script',
                 changeType: 'create',
@@ -63,7 +63,7 @@ class ScriptController {
                 changeDetails: req.body,
                 userId: req.user.id,
                 username: req.user.username,
-                scriptId: req.params.scriptId
+                scriptId: script.scriptId
             });
             res.status(200).json({ message: 'Script updated successfully' });
         } catch (error) {

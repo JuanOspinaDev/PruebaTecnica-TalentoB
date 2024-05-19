@@ -13,12 +13,14 @@ Scene.init({
         type: DataTypes.TEXT,
         allowNull: true
     },
-    sceneId: {
+    scriptId: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: 'Scenes',
-            key: 'id'
+            model: 'Scripts',
+            key: 'id',
+            onDelete: 'CASCADE', // Elimina Scene cuando se elimina un Script
+            onUpdate: 'CASCADE'
         }
     }
 }, {
@@ -26,7 +28,7 @@ Scene.init({
     modelName: 'Scene'
 });
 
-Scene.belongsTo(Script, { foreignKey: 'scriptId' });
-Script.hasMany(Scene, { foreignKey: 'scriptId' });
+Scene.belongsTo(Script, { foreignKey: 'scriptId', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
+Script.hasMany(Scene, { foreignKey: 'scriptId', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
 
 module.exports = Scene;

@@ -17,8 +17,10 @@ Script.init({
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: 'Users', 
-            key: 'id'
+            model: 'Users',
+            key: 'id',
+            onDelete: 'CASCADE', // Elimina Script cuando se elimina un User
+            onUpdate: 'CASCADE'
         }
     }
 }, {
@@ -26,7 +28,7 @@ Script.init({
     modelName: 'Script'
 });
 
-Script.belongsTo(User, { foreignKey: 'guionistaId' });
-User.hasMany(Script, { foreignKey: 'guionistaId' });
+Script.belongsTo(User, { foreignKey: 'guionistaId', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
+User.hasMany(Script, { foreignKey: 'guionistaId', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
 
 module.exports = Script;

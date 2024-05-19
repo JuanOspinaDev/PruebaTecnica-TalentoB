@@ -24,14 +24,14 @@ router.get(
     sceneController.getById
 );
 router.put(
-    '/:id', 
+    '/:id/:scriptId', 
     authMiddleware, 
     authorizeRole('guionista'),
     sceneValidator.update, 
     sceneController.update
 );
 router.delete(
-    '/:id', 
+    '/:id/:scriptId', 
     authMiddleware, 
     authorizeRole('guionista'),
     sceneController.delete

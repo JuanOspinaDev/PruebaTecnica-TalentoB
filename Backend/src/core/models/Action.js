@@ -18,7 +18,9 @@ Action.init({
         allowNull: false,
         references: {
             model: 'SceneParts',
-            key: 'id'
+            key: 'id',
+            onDelete: 'CASCADE', // Elimina Actions cuando se elimina un ScenePart
+            onUpdate: 'CASCADE'
         }
     }
 }, {
@@ -26,7 +28,7 @@ Action.init({
     modelName: 'Action'
 });
 
-Action.belongsTo(ScenePart, { foreignKey: 'scenePartId' });
-ScenePart.hasMany(Action, { foreignKey: 'scenePartId' });
+Action.belongsTo(ScenePart, { foreignKey: 'scenePartId', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
+ScenePart.hasMany(Action, { foreignKey: 'scenePartId', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
 
 module.exports = Action;

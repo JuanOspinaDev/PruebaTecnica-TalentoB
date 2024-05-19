@@ -1,4 +1,5 @@
 const dialogueService = require('../core/services/DialogueService');
+const ChangeLogService = require('../core/services/ChangeLogService');
 const { validationResult } = require('express-validator');
 
 class DialogueController {
@@ -8,12 +9,13 @@ class DialogueController {
             return res.status(400).json({ errors: errors.array() });
         }
         try {
-            const dialogue = await dialogueService.createDialogue(req.params.sceneId, req.body);
+            const dialogue = await dialogueService.createDialogue(req.body);
             await ChangeLogService.logChange({
                 entity: 'Dialogue',
                 changeType: 'create',
                 changeDetails: req.body,
                 userId: req.user.id,
+                username: req.user.username,
                 scriptId: req.params.scriptId
             });
             res.status(201).json(dialogue);

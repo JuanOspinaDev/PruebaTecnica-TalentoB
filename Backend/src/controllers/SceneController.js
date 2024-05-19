@@ -1,4 +1,5 @@
 const sceneService = require('../core/services/SceneService');
+const ChangeLogService = require('../core/services/ChangeLogService');
 const { validationResult } = require('express-validator');
 
 class SceneController {
@@ -8,7 +9,7 @@ class SceneController {
             return res.status(400).json({ errors: errors.array() });
         }
         try {
-            const scene = await sceneService.createScene(req.params.scriptId, req.body);
+            const scene = await sceneService.createScene(req.body);
 
             await ChangeLogService.logChange({
                 entity: 'Scene',

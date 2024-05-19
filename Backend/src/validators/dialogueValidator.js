@@ -2,11 +2,11 @@ const { check } = require('express-validator');
 
 const dialogueValidator = {
     create: [
-        check('sceneId')
+        check('scenePartId')
             .notEmpty()
-            .withMessage('Scene ID is required')
+            .withMessage('ScenePart ID is required')
             .isInt({ min: 1 })
-            .withMessage('Scene ID must be an integer greater than 0'),
+            .withMessage('ScenePart ID must be an integer greater than 0'),
         check('dialogue')
             .notEmpty()
             .withMessage('Dialogue is required')

@@ -7,7 +7,7 @@ const authorizeRole = require('../middlewares/authorizeRol');
 const router = express.Router();
 
 router.post(
-    '/',
+    '/scriptId',
     authMiddleware, 
     authorizeRole('guionista'), 
     actionValidator.create, 

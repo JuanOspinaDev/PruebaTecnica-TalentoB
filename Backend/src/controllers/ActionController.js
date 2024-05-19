@@ -1,4 +1,5 @@
 const ActionService = require('../core/services/ActionService');
+const ChangeLogService = require('../core/services/ChangeLogService');
 const { validationResult } = require('express-validator');
 
 class ActionController {
@@ -14,6 +15,7 @@ class ActionController {
                 changeType: 'create',
                 changeDetails: req.body,
                 userId: req.user.id,
+                username: req.user.username,
                 scriptId: req.params.scriptId
             });
             res.status(201).json(action);
@@ -55,6 +57,7 @@ class ActionController {
                 changeType: 'update',
                 changeDetails: req.body,
                 userId: req.user.id,
+                username: req.user.username,
                 scriptId: req.params.scriptId
             });
             res.status(200).json(action);
@@ -74,6 +77,7 @@ class ActionController {
                 changeType: 'delete',
                 changeDetails: req.body,
                 userId: req.user.id,
+                username: req.user.username,
                 scriptId: req.params.scriptId
             });
             res.status(200).json({ message: 'Action deleted successfully' });

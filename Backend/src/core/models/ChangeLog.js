@@ -28,25 +28,33 @@ ChangeLog.init({
         allowNull: false,
         references: {
             model: 'Users',
-            key: 'id'
+            key: 'id',
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE'
         }
+    },
+    username: {
+        type: DataTypes.STRING,
+        allowNull: false
     },
     scriptId: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
             model: 'Scripts',
-            key: 'id'
+            key: 'id',
+            onDelete: 'CASCADE', // Elimina ChangeLogs cuando se elimina un Script
+            onUpdate: 'CASCADE'
         }
     }
 }, {
     sequelize,
-    modelName: 'ChangeLog'
+    modelName: 'ChangeLog',
 });
 
-ChangeLog.belongsTo(User, { foreignKey: 'userId' });
-ChangeLog.belongsTo(Script, { foreignKey: 'scriptId' });
-User.hasMany(ChangeLog, { foreignKey: 'userId' });
-Script.hasMany(ChangeLog, { foreignKey: 'scriptId' });
+ChangeLog.belongsTo(User, { foreignKey: 'userId', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
+ChangeLog.belongsTo(Script, { foreignKey: 'scriptId', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
+User.hasMany(ChangeLog, { foreignKey: 'userId', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
+Script.hasMany(ChangeLog, { foreignKey: 'scriptId', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
 
 module.exports = ChangeLog;

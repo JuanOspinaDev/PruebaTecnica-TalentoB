@@ -2,12 +2,12 @@ const sceneRepository = require('../../infrastructure/databases/SceneRepository'
 const scriptRepository = require('../../infrastructure/databases/ScriptRepository');
 
 class SceneService {
-    async createScene(scriptId, sceneData, transaction) {
-        const script = await scriptRepository.findById(scriptId);
+    async createScene(sceneData) {
+        const script = await scriptRepository.findById(sceneData.scriptId);
         if (!script) {
             throw new Error('Script not found');
         }
-        return await sceneRepository.create(sceneData, transaction);
+        return await sceneRepository.create(sceneData);
 
     }
 

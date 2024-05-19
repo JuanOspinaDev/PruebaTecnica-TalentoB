@@ -1,4 +1,5 @@
 const actorLocationService = require('../core/services/ActorLocationService');
+const ChangeLogService = require('../core/services/ChangeLogService');
 const { validationResult } = require('express-validator');
 
 class ActorLocationController {

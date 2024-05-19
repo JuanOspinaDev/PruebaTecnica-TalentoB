@@ -18,7 +18,9 @@ Character.init({
         allowNull: false,
         references: {
             model: 'Actors',
-            key: 'id'
+            key: 'id',
+            onDelete: 'CASCADE', // Elimina Characters cuando se elimina un Actor
+            onUpdate: 'CASCADE'
         }
     }
 }, {
@@ -26,7 +28,7 @@ Character.init({
     modelName: 'Character'
 });
 
-Character.belongsTo(Actor, { foreignKey: 'actorId' });
-Actor.hasMany(Character, { foreignKey: 'actorId' });
+Character.belongsTo(Actor, { foreignKey: 'actorId', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
+Actor.hasMany(Character, { foreignKey: 'actorId', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
 
 module.exports = Character;

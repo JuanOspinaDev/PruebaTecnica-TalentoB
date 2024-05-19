@@ -1,9 +1,9 @@
 const actorPoseRepository = require('../../infrastructure/databases/ActorPoseRepository');
-const sceneRepository = require('../../infrastructure/databases/SceneRepository');
+const scenePartRepository = require('../../infrastructure/databases/ScenePartRepository');
 
 class ActorPoseService {
     async createActorPose(sceneId, poseData) {
-        const scene = await sceneRepository.findById(sceneId);
+        const scene = await scenePartRepository.findById(sceneId);
         if (!scene) {
             throw new Error('Scene not found');
         }

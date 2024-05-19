@@ -1,4 +1,5 @@
 const actorPoseService = require('../core/services/ActorPoseService');
+const ChangeLogService = require('../core/services/ChangeLogService');
 const { validationResult } = require('express-validator');
 
 class ActorPoseController {

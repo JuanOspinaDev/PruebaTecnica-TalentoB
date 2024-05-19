@@ -1,5 +1,6 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../../config/database');
+const ScenePart = require('./ScenePart');
 
 const ActorPose = sequelize.define('ActorPose', {
     id: {
@@ -12,7 +13,9 @@ const ActorPose = sequelize.define('ActorPose', {
         allowNull: false,
         references: {
             model: 'SceneParts', 
-            key: 'id'
+            key: 'id',
+            onDelete: 'CASCADE', // Elimina ActorPoses cuando se elimina un ScenePart
+            onUpdate: 'CASCADE'
         }
     },
     pose: {
@@ -22,5 +25,8 @@ const ActorPose = sequelize.define('ActorPose', {
 }, {
     timestamps: true
 });
+
+ActorPose.belongsTo(ScenePart, { foreignKey: 'scenePartId', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
+ScenePart.hasMany(ActorPose, { foreignKey: 'scenePartId', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
 
 module.exports = ActorPose;

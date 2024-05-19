@@ -7,7 +7,7 @@ const authorizeRole = require('../middlewares/authorizeRol');
 const router = express.Router();
 
 router.post(
-    '/', 
+    '/scriptId', 
     authMiddleware, 
     authorizeRole('guionista'),
     characterValidator.create, 
@@ -25,14 +25,14 @@ router.get(
     CharacterController.getById
 );
 router.put(
-    '/:id', 
+    '/:id/:scriptId', 
     authMiddleware, 
     authorizeRole('guionista'),
     characterValidator.update, 
     CharacterController.update
 );
 router.delete(
-    '/:id', 
+    '/:id/:scriptId', 
     authMiddleware, 
     authorizeRole('guionista'),
     characterValidator.getById, 
