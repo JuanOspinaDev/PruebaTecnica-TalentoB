@@ -1,5 +1,4 @@
-const CharacterRepository = require('../../infrastructure/databases/CharacterRepository');
-const characterRepository = new CharacterRepository();
+const characterRepository = require('../../infrastructure/databases/CharacterRepository');
 
 class CharacterService {
     async createCharacter(characterData) {

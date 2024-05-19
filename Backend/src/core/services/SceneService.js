@@ -1,4 +1,5 @@
 const sceneRepository = require('../../infrastructure/databases/SceneRepository');
+const scriptRepository = require('../../infrastructure/databases/ScriptRepository');
 
 class SceneService {
     async createScene(scriptId, sceneData, transaction) {

@@ -9,6 +9,13 @@ class DialogueController {
         }
         try {
             const dialogue = await dialogueService.createDialogue(req.params.sceneId, req.body);
+            await ChangeLogService.logChange({
+                entity: 'Dialogue',
+                changeType: 'create',
+                changeDetails: req.body,
+                userId: req.user.id,
+                scriptId: req.params.scriptId
+            });
             res.status(201).json(dialogue);
         } catch (error) {
             res.status(400).json({ error: error.message });
@@ -42,6 +49,13 @@ class DialogueController {
             if (!dialogue[0]) {
                 return res.status(404).json({ error: 'Dialogue not found' });
             }
+            await ChangeLogService.logChange({
+                entity: 'Dialogue',
+                changeType: 'update',
+                changeDetails: req.body,
+                userId: req.user.id,
+                scriptId: req.params.scriptId
+            });
             res.status(200).json({ message: 'Dialogue updated successfully' });
         } catch (error) {
             res.status(400).json({ error: error.message });
@@ -54,6 +68,13 @@ class DialogueController {
             if (!result) {
                 return res.status(404).json({ error: 'Dialogue not found' });
             }
+            await ChangeLogService.logChange({
+                entity: 'Dialogue',
+                changeType: 'delete',
+                changeDetails: req.body,
+                userId: req.user.id,
+                scriptId: req.params.scriptId
+            });
             res.status(200).json({ message: 'Dialogue deleted successfully' });
         } catch (error) {
             res.status(400).json({ error: error.message });

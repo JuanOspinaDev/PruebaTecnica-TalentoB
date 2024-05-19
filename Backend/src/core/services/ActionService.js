@@ -1,5 +1,4 @@
 const ActionRepository = require('../../infrastructure/databases/ActionRepository');
-const actionRepository = new ActionRepository();
 
 class ActionService {
     async createAction(actionData) {

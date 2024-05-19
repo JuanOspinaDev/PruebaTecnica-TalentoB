@@ -13,9 +13,13 @@ Scene.init({
         type: DataTypes.TEXT,
         allowNull: true
     },
-    order: {
+    sceneId: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+            model: 'Scenes',
+            key: 'id'
+        }
     }
 }, {
     sequelize,

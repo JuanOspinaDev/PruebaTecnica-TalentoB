@@ -1,5 +1,4 @@
-const ActorRepository = require('../../infrastructure/databases/ActorRepository');
-const actorRepository = new ActorRepository();
+const actorRepository = require('../../infrastructure/databases/ActorRepository');
 
 class ActorService {
     async createActor(actorData) {

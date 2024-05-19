@@ -9,6 +9,13 @@ class CharacterController {
         }
         try {
             const character = await CharacterService.createCharacter(req.body);
+            await ChangeLogService.logChange({
+                entity: 'Character',
+                changeType: 'create',
+                changeDetails: req.body,
+                userId: req.user.id,
+                scriptId: req.params.scriptId
+            });
             res.status(201).json(character);
         } catch (error) {
             res.status(400).json({ error: error.message });
@@ -43,6 +50,13 @@ class CharacterController {
         }
         try {
             const character = await CharacterService.updateCharacter(req.params.id, req.body);
+            await ChangeLogService.logChange({
+                entity: 'Character',
+                changeType: 'update',
+                changeDetails: req.body,
+                userId: req.user.id,
+                scriptId: req.params.scriptId
+            });
             res.status(200).json(character);
         } catch (error) {
             res.status(400).json({ error: error.message });
@@ -55,6 +69,13 @@ class CharacterController {
             if (!result) {
                 return res.status(404).json({ error: 'Character not found' });
             }
+            await ChangeLogService.logChange({
+                entity: 'Character',
+                changeType: 'delete',
+                changeDetails: req.body,
+                userId: req.user.id,
+                scriptId: req.params.scriptId
+            });
             res.status(200).json({ message: 'Character deleted successfully' });
         } catch (error) {
             res.status(400).json({ error: error.message });

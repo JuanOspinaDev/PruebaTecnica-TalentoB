@@ -33,7 +33,7 @@ ActorLocation.init({
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: 'ScenePart',
+            model: 'SceneParts',
             key: 'id'
         }
     }

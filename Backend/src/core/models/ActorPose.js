@@ -11,7 +11,7 @@ const ActorPose = sequelize.define('ActorPose', {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: 'ScenePart', 
+            model: 'SceneParts', 
             key: 'id'
         }
     },

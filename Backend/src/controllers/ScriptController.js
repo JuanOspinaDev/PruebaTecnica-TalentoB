@@ -1,5 +1,6 @@
 const scriptService = require('../core/services/ScriptService');
 const { validationResult } = require('express-validator');
+const ChangeLogService = require('../core/services/ChangeLogService');
 
 class ScriptController {
     async create(req, res) {
@@ -9,6 +10,14 @@ class ScriptController {
         }
         try {
             const script = await scriptService.createScript(req.body);
+
+            await ChangeLogService.logChange({
+                changeType: 'create',
+                changeDetails: req.body,
+                userId: req.user.id,
+                scriptId: script.id
+            });
+
             res.status(201).json(script);
         } catch (error) {
             res.status(400).json({ error: error.message });

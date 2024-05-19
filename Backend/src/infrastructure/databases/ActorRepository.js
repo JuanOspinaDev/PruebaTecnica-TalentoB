@@ -34,4 +34,4 @@ class ActorRepository {
     }
 }
 
-module.exports = ActorRepository;
+module.exports = new ActorRepository();

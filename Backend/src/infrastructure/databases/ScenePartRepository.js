@@ -34,4 +34,4 @@ class ScenePartRepository {
     }
 }
 
-module.exports = ScenePartRepository;
+module.exports = new ScenePartRepository();

@@ -34,4 +34,4 @@ class CharacterRepository {
     }
 }
 
-module.exports = CharacterRepository;
+module.exports = new CharacterRepository();

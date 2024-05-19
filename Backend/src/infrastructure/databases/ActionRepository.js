@@ -34,4 +34,4 @@ class ActionRepository {
     }
 }
 
-module.exports = ActionRepository;
+module.exports = new ActionRepository();
