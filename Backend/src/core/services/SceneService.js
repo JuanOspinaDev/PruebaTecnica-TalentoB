@@ -1,15 +1,13 @@
-const SceneRepository = require('../../infrastructure/databases/SceneRepository');
-const ScriptRepository = require('../../infrastructure/databases/ScriptRepository');
-const sceneRepository = new SceneRepository();
-const scriptRepository = new ScriptRepository();
+const sceneRepository = require('../../infrastructure/databases/SceneRepository');
 
 class SceneService {
-    async createScene(scriptId, sceneData) {
+    async createScene(scriptId, sceneData, transaction) {
         const script = await scriptRepository.findById(scriptId);
         if (!script) {
             throw new Error('Script not found');
         }
-        return await sceneRepository.create({ ...sceneData, scriptId });
+        return await sceneRepository.create(sceneData, transaction);
+
     }
 
     async getAllScenes() {
@@ -29,4 +27,4 @@ class SceneService {
     }
 }
 
-module.exports = SceneService;
+module.exports = new SceneService();

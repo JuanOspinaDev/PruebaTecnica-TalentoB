@@ -1,15 +1,15 @@
-const scriptService = require('../core/services/ScriptService');
+const ActorService = require('../core/services/ActorService');
 const { validationResult } = require('express-validator');
 
-class ScriptController {
+class ActorController {
     async create(req, res) {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
         try {
-            const script = await scriptService.createScript(req.body);
-            res.status(201).json(script);
+            const actor = await ActorService.createActor(req.body);
+            res.status(201).json(actor);
         } catch (error) {
             res.status(400).json({ error: error.message });
         }
@@ -17,8 +17,8 @@ class ScriptController {
 
     async getAll(req, res) {
         try {
-            const scripts = await scriptService.getAllScripts();
-            res.status(200).json(scripts);
+            const actors = await ActorService.getAllActors();
+            res.status(200).json(actors);
         } catch (error) {
             res.status(400).json({ error: error.message });
         }
@@ -26,11 +26,11 @@ class ScriptController {
 
     async getById(req, res) {
         try {
-            const script = await scriptService.getScriptById(req.params.id);
-            if (!script) {
-                return res.status(404).json({ error: 'Script not found' });
+            const actor = await ActorService.getActorById(req.params.id);
+            if (!actor) {
+                return res.status(404).json({ error: 'Actor not found' });
             }
-            res.status(200).json(script);
+            res.status(200).json(actor);
         } catch (error) {
             res.status(400).json({ error: error.message });
         }
@@ -42,11 +42,8 @@ class ScriptController {
             return res.status(400).json({ errors: errors.array() });
         }
         try {
-            const script = await scriptService.updateScript(req.params.id, req.body);
-            if (!script[0]) {
-                return res.status(404).json({ error: 'Script not found' });
-            }
-            res.status(200).json({ message: 'Script updated successfully' });
+            const actor = await ActorService.updateActor(req.params.id, req.body);
+            res.status(200).json(actor);
         } catch (error) {
             res.status(400).json({ error: error.message });
         }
@@ -54,15 +51,15 @@ class ScriptController {
 
     async delete(req, res) {
         try {
-            const result = await scriptService.deleteScript(req.params.id);
+            const result = await ActorService.deleteActor(req.params.id);
             if (!result) {
-                return res.status(404).json({ error: 'Script not found' });
+                return res.status(404).json({ error: 'Actor not found' });
             }
-            res.status(200).json({ message: 'Script deleted successfully' });
+            res.status(200).json({ message: 'Actor deleted successfully' });
         } catch (error) {
             res.status(400).json({ error: error.message });
         }
     }
 }
 
-module.exports = new ScriptController();
+module.exports = new ActorController();

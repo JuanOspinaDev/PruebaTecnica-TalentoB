@@ -1,16 +1,9 @@
-const VersionRepository = require('../../infrastructure/databases/VersionRepository');
-const ScriptRepository = require('../../infrastructure/databases/ScriptRepository');
-const SceneRepository = require('../../infrastructure/databases/SceneRepository');
-const ActorLocationRepository = require('../../infrastructure/databases/ActorLocationRepository');
-const ActorPoseRepository = require('../../infrastructure/databases/ActorPoseRepository');
-const DialogueRepository = require('../../infrastructure/databases/DialogueRepository');
-
-const versionRepository = new VersionRepository();
-const scriptRepository = new ScriptRepository();
-const sceneRepository = new SceneRepository();
-const actorLocationRepository = new ActorLocationRepository();
-const actorPoseRepository = new ActorPoseRepository();
-const dialogueRepository = new DialogueRepository();
+const versionRepository = require('../../infrastructure/databases/VersionRepository');
+const scriptRepository = require('../../infrastructure/databases/ScriptRepository');
+const sceneRepository = require('../../infrastructure/databases/SceneRepository');
+const actorLocationRepository = require('../../infrastructure/databases/ActorLocationRepository');
+const actorPoseRepository = require('../../infrastructure/databases/ActorPoseRepository');
+const dialogueRepository = require('../../infrastructure/databases/DialogueRepository');
 
 class VersionService {
     async createVersion(scriptId) {
@@ -45,4 +38,4 @@ class VersionService {
     }
 }
 
-module.exports = VersionService;
+module.exports = new VersionService();

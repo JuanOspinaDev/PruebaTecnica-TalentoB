@@ -26,4 +26,4 @@ class VersionRepository {
     }
 }
 
-module.exports = VersionRepository;
+module.exports = new VersionRepository();

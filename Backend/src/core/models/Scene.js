@@ -12,6 +12,10 @@ Scene.init({
     description: {
         type: DataTypes.TEXT,
         allowNull: true
+    },
+    order: {
+        type: DataTypes.INTEGER,
+        allowNull: false
     }
 }, {
     sequelize,

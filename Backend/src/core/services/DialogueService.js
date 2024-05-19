@@ -1,7 +1,5 @@
-const DialogueRepository = require('../../infrastructure/databases/DialogueRepository');
-const SceneRepository = require('../../infrastructure/databases/SceneRepository');
-const dialogueRepository = new DialogueRepository();
-const sceneRepository = new SceneRepository();
+const dialogueRepository = require('../../infrastructure/databases/DialogueRepository');
+const sceneRepository = require('../../infrastructure/databases/SceneRepository');
 
 class DialogueService {
     async createDialogue(sceneId, dialogueData) {
@@ -29,4 +27,4 @@ class DialogueService {
     }
 }
 
-module.exports = DialogueService;
+module.exports = new DialogueService();

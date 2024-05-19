@@ -2,22 +2,14 @@ const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../../config/database');
 const ScenePart = require('./ScenePart');
 
-class Dialogue extends Model {}
+class Action extends Model {}
 
-Dialogue.init({
-    dialogue: {
+Action.init({
+    description: {
         type: DataTypes.STRING,
         allowNull: false
     },
     order: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-    },
-    annotation: {
-        type: DataTypes.STRING,
-        allowNull: true
-    },
-    characterId: {
         type: DataTypes.INTEGER,
         allowNull: false
     },
@@ -31,10 +23,10 @@ Dialogue.init({
     }
 }, {
     sequelize,
-    modelName: 'Dialogue'
+    modelName: 'Action'
 });
 
-Dialogue.belongsTo(ScenePart, { foreignKey: 'scenePartId' });
-ScenePart.hasMany(Dialogue, { foreignKey: 'scenePartId' });
+Action.belongsTo(ScenePart, { foreignKey: 'scenePartId' });
+ScenePart.hasMany(Action, { foreignKey: 'scenePartId' });
 
-module.exports = Dialogue;
+module.exports = Action;

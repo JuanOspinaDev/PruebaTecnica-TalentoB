@@ -32,4 +32,4 @@ class SceneRepository {
     }
 }
 
-module.exports = SceneRepository;
+module.exports = new SceneRepository();

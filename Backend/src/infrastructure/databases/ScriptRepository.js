@@ -5,8 +5,10 @@ class ScriptRepository {
         return await Script.create(scriptData);
     }
 
-    async findAll() {
-        return await Script.findAll();
+    async findAll(attributes) {
+        return await Script.findAll({
+            attributes
+        });
     }
 
     async findById(id) {
@@ -26,4 +28,4 @@ class ScriptRepository {
     }
 }
 
-module.exports = ScriptRepository;
+module.exports = new ScriptRepository();

@@ -1,15 +1,15 @@
-const scriptService = require('../core/services/ScriptService');
+const ScenePartService = require('../core/services/ScenePartService');
 const { validationResult } = require('express-validator');
 
-class ScriptController {
+class ScenePartController {
     async create(req, res) {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
         try {
-            const script = await scriptService.createScript(req.body);
-            res.status(201).json(script);
+            const scenePart = await ScenePartService.createScenePart(req.body);
+            res.status(201).json(scenePart);
         } catch (error) {
             res.status(400).json({ error: error.message });
         }
@@ -17,8 +17,8 @@ class ScriptController {
 
     async getAll(req, res) {
         try {
-            const scripts = await scriptService.getAllScripts();
-            res.status(200).json(scripts);
+            const sceneParts = await ScenePartService.getAllSceneParts();
+            res.status(200).json(sceneParts);
         } catch (error) {
             res.status(400).json({ error: error.message });
         }
@@ -26,11 +26,11 @@ class ScriptController {
 
     async getById(req, res) {
         try {
-            const script = await scriptService.getScriptById(req.params.id);
-            if (!script) {
-                return res.status(404).json({ error: 'Script not found' });
+            const scenePart = await ScenePartService.getScenePartById(req.params.id);
+            if (!scenePart) {
+                return res.status(404).json({ error: 'ScenePart not found' });
             }
-            res.status(200).json(script);
+            res.status(200).json(scenePart);
         } catch (error) {
             res.status(400).json({ error: error.message });
         }
@@ -42,11 +42,11 @@ class ScriptController {
             return res.status(400).json({ errors: errors.array() });
         }
         try {
-            const script = await scriptService.updateScript(req.params.id, req.body);
-            if (!script[0]) {
-                return res.status(404).json({ error: 'Script not found' });
+            const scenePart = await ScenePartService.updateScenePart(req.params.id, req.body);
+            if (!scenePart[0]) {
+                return res.status(404).json({ error: 'ScenePart not found' });
             }
-            res.status(200).json({ message: 'Script updated successfully' });
+            res.status(200).json({ message: 'ScenePart updated successfully' });
         } catch (error) {
             res.status(400).json({ error: error.message });
         }
@@ -54,15 +54,15 @@ class ScriptController {
 
     async delete(req, res) {
         try {
-            const result = await scriptService.deleteScript(req.params.id);
+            const result = await ScenePartService.deleteScenePart(req.params.id);
             if (!result) {
-                return res.status(404).json({ error: 'Script not found' });
+                return res.status(404).json({ error: 'ScenePart not found' });
             }
-            res.status(200).json({ message: 'Script deleted successfully' });
+            res.status(200).json({ message: 'ScenePart deleted successfully' });
         } catch (error) {
             res.status(400).json({ error: error.message });
         }
     }
 }
 
-module.exports = new ScriptController();
+module.exports = new ScenePartController();

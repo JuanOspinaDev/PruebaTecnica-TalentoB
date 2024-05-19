@@ -32,4 +32,4 @@ class ActorPoseRepository {
     }
 }
 
-module.exports = ActorPoseRepository;
+module.exports = new ActorPoseRepository();

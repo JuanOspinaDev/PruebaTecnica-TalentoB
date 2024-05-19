@@ -1,5 +1,4 @@
-const SceneService = require('../core/services/SceneService');
-const sceneService = new SceneService();
+const sceneService = require('../core/services/SceneService');
 const { validationResult } = require('express-validator');
 
 class SceneController {

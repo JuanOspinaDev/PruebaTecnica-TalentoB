@@ -1,5 +1,4 @@
-const DialogueService = require('../core/services/DialogueService');
-const dialogueService = new DialogueService();
+const dialogueService = require('../core/services/DialogueService');
 const { validationResult } = require('express-validator');
 
 class DialogueController {

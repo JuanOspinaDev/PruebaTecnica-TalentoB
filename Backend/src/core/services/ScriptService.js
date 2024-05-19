@@ -1,5 +1,4 @@
-const ScriptRepository = require('../../infrastructure/databases/ScriptRepository');
-const scriptRepository = new ScriptRepository();
+const scriptRepository = require('../../infrastructure/databases/ScriptRepository');
 
 class ScriptService {
     async createScript(scriptData) {
@@ -7,7 +6,7 @@ class ScriptService {
     }
 
     async getAllScripts() {
-        return await scriptRepository.findAll();
+        return await scriptRepository.findAll({ attributes: ['id', 'title', 'genre'] });
     }
 
     async getScriptById(id) {
@@ -23,4 +22,4 @@ class ScriptService {
     }
 }
 
-module.exports = ScriptService;
+module.exports = new ScriptService();

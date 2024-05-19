@@ -1,7 +1,5 @@
-const ActorLocationRepository = require('../../infrastructure/databases/ActorLocationRepository');
-const SceneRepository = require('../../infrastructure/databases/SceneRepository');
-const actorLocationRepository = new ActorLocationRepository();
-const sceneRepository = new SceneRepository();
+const actorLocationRepository = require('../../infrastructure/databases/ActorLocationRepository');
+const sceneRepository = require('../../infrastructure/databases/SceneRepository');
 
 class ActorLocationService {
     async createActorLocation(sceneId, locationData) {
@@ -29,4 +27,4 @@ class ActorLocationService {
     }
 }
 
-module.exports = ActorLocationService;
+module.exports = new ActorLocationService();

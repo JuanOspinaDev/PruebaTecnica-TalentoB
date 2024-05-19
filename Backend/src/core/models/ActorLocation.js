@@ -1,6 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../../config/database');
-const Scene = require('./Scene');
+const ScenePart = require('./ScenePart');
 
 class ActorLocation extends Model {}
 
@@ -28,13 +28,21 @@ ActorLocation.init({
     rotationZ: {
         type: DataTypes.FLOAT,
         allowNull: false
+    },
+    scenePartId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'ScenePart',
+            key: 'id'
+        }
     }
 }, {
     sequelize,
     modelName: 'ActorLocation'
 });
 
-ActorLocation.belongsTo(Scene, { foreignKey: 'sceneId' });
-Scene.hasMany(ActorLocation, { foreignKey: 'sceneId' });
+ActorLocation.belongsTo(ScenePart, { foreignKey: 'scenePartId' });
+ScenePart.hasMany(ActorLocation, { foreignKey: 'scenePartId' });
 
 module.exports = ActorLocation;

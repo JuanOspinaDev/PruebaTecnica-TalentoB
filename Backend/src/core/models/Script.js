@@ -1,5 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../../config/database');
+const User = require('./User'); 
 
 class Script extends Model {}
 
@@ -12,13 +13,20 @@ Script.init({
         type: DataTypes.STRING,
         allowNull: false
     },
-    content: {
-        type: DataTypes.TEXT,
-        allowNull: false
+    guionistaId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'User', 
+            key: 'id'
+        }
     }
 }, {
     sequelize,
     modelName: 'Script'
 });
+
+Script.belongsTo(User, { foreignKey: 'guionistaId' });
+User.hasMany(Script, { foreignKey: 'guionistaId' });
 
 module.exports = Script;

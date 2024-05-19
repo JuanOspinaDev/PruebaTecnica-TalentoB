@@ -1,7 +1,5 @@
-const ActorPoseRepository = require('../../infrastructure/databases/ActorPoseRepository');
-const SceneRepository = require('../../infrastructure/databases/SceneRepository');
-const actorPoseRepository = new ActorPoseRepository();
-const sceneRepository = new SceneRepository();
+const actorPoseRepository = require('../../infrastructure/databases/ActorPoseRepository');
+const sceneRepository = require('../../infrastructure/databases/SceneRepository');
 
 class ActorPoseService {
     async createActorPose(sceneId, poseData) {
@@ -29,4 +27,4 @@ class ActorPoseService {
     }
 }
 
-module.exports = ActorPoseService;
+module.exports = new ActorPoseService();

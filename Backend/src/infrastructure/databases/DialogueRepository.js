@@ -32,4 +32,4 @@ class DialogueRepository {
     }
 }
 
-module.exports = DialogueRepository;
+module.exports = new DialogueRepository();

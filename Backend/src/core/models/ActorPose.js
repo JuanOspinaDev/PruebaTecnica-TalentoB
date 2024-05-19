@@ -7,11 +7,11 @@ const ActorPose = sequelize.define('ActorPose', {
         autoIncrement: true,
         primaryKey: true
     },
-    sceneId: {
+    scenePartId: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: 'Scenes', // Nombre de la tabla que referenciamos
+            model: 'ScenePart', 
             key: 'id'
         }
     },

@@ -1,5 +1,4 @@
-const VersionService = require('../core/services/VersionService');
-const versionService = new VersionService();
+const versionService = require('../core/services/VersionService');
 
 class VersionController {
     async create(req, res) {
