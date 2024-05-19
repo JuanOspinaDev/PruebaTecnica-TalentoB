@@ -1,10 +1,24 @@
 const express = require('express');
 const versionController = require('../../../controllers/VersionController');
+const authMiddleware = require('../middlewares/authMiddleware');
+const authorizeRole = require('../middlewares/authorizeRol');
 
 const router = express.Router();
 
-router.post('/:scriptId', versionController.create);
-router.get('/:scriptId', versionController.getVersions);
-router.get('/version/:id', versionController.getById);
+router.post(
+    '/:scriptId',
+    authMiddleware, 
+    authorizeRole('guionista'), 
+    versionController.create
+);
+router.get(
+    '/:scriptId', 
+    authMiddleware, 
+    versionController.getVersions
+);
+router.get(
+    '/version/:id', 
+    authMiddleware, 
+    versionController.getById);
 
 module.exports = router;

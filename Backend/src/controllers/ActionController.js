@@ -9,6 +9,13 @@ class ActionController {
         }
         try {
             const action = await ActionService.createAction(req.body);
+            await ChangeLogService.logChange({
+                entity: 'Action',
+                changeType: 'create',
+                changeDetails: req.body,
+                userId: req.user.id,
+                scriptId: req.params.scriptId
+            });
             res.status(201).json(action);
         } catch (error) {
             res.status(400).json({ error: error.message });
@@ -43,6 +50,13 @@ class ActionController {
         }
         try {
             const action = await ActionService.updateAction(req.params.id, req.body);
+            await ChangeLogService.logChange({
+                entity: 'Action',
+                changeType: 'update',
+                changeDetails: req.body,
+                userId: req.user.id,
+                scriptId: req.params.scriptId
+            });
             res.status(200).json(action);
         } catch (error) {
             res.status(400).json({ error: error.message });
@@ -55,6 +69,13 @@ class ActionController {
             if (!result) {
                 return res.status(404).json({ error: 'Action not found' });
             }
+            await ChangeLogService.logChange({
+                entity: 'Action',
+                changeType: 'delete',
+                changeDetails: req.body,
+                userId: req.user.id,
+                scriptId: req.params.scriptId
+            });
             res.status(200).json({ message: 'Action deleted successfully' });
         } catch (error) {
             res.status(400).json({ error: error.message });

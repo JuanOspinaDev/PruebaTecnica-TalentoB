@@ -54,6 +54,7 @@ class DialogueController {
                 changeType: 'update',
                 changeDetails: req.body,
                 userId: req.user.id,
+                username: req.user.username,
                 scriptId: req.params.scriptId
             });
             res.status(200).json({ message: 'Dialogue updated successfully' });
@@ -73,6 +74,7 @@ class DialogueController {
                 changeType: 'delete',
                 changeDetails: req.body,
                 userId: req.user.id,
+                username: req.user.username,
                 scriptId: req.params.scriptId
             });
             res.status(200).json({ message: 'Dialogue deleted successfully' });

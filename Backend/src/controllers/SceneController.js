@@ -15,6 +15,7 @@ class SceneController {
                 changeType: 'create',
                 changeDetails: req.body,
                 userId: req.user.id,
+                username: req.user.username,
                 scriptId: req.params.scriptId
             });
             res.status(201).json(scene);
@@ -55,6 +56,7 @@ class SceneController {
                 changeType: 'update',
                 changeDetails: req.body,
                 userId: req.user.id,
+                username: req.user.username,
                 scriptId: req.params.scriptId
             });
             res.status(200).json({ message: 'Scene updated successfully' });
@@ -74,6 +76,7 @@ class SceneController {
                 changeType: 'delete',
                 changeDetails: req.body,
                 userId: req.user.id,
+                username: req.user.username,
                 scriptId: req.params.scriptId
             });
             res.status(200).json({ message: 'Scene deleted successfully' });

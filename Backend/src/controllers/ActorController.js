@@ -9,6 +9,14 @@ class ActorController {
         }
         try {
             const actor = await ActorService.createActor(req.body);
+            await ChangeLogService.logChange({
+                entity: 'Actor',
+                changeType: 'create',
+                changeDetails: req.body,
+                userId: req.user.id,
+                username: req.user.username,
+                scriptId: req.params.scriptId
+            });
             res.status(201).json(actor);
         } catch (error) {
             res.status(400).json({ error: error.message });
@@ -43,6 +51,14 @@ class ActorController {
         }
         try {
             const actor = await ActorService.updateActor(req.params.id, req.body);
+            await ChangeLogService.logChange({
+                entity: 'Actor',
+                changeType: 'update',
+                changeDetails: req.body,
+                userId: req.user.id,
+                username: req.user.username,
+                scriptId: req.params.scriptId
+            });
             res.status(200).json(actor);
         } catch (error) {
             res.status(400).json({ error: error.message });
@@ -55,6 +71,14 @@ class ActorController {
             if (!result) {
                 return res.status(404).json({ error: 'Actor not found' });
             }
+            await ChangeLogService.logChange({
+                entity: 'Actor',
+                changeType: 'delete',
+                changeDetails: req.body,
+                userId: req.user.id,
+                username: req.user.username,
+                scriptId: req.params.scriptId
+            });
             res.status(200).json({ message: 'Actor deleted successfully' });
         } catch (error) {
             res.status(400).json({ error: error.message });

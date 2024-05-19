@@ -6,6 +6,10 @@ const Script = require('./Script');
 class ChangeLog extends Model {}
 
 ChangeLog.init({
+    entity: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
     changeType: {
         type: DataTypes.STRING,
         allowNull: false

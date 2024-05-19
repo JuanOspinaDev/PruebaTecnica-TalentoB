@@ -9,6 +9,14 @@ class ActorLocationController {
         }
         try {
             const actorLocation = await actorLocationService.createActorLocation(req.params.sceneId, req.body);
+            await ChangeLogService.logChange({
+                entity: 'ActorLocation',
+                changeType: 'create',
+                changeDetails: req.body,
+                userId: req.user.id,
+                username: req.user.username,
+                scriptId: req.params.scriptId
+            });
             res.status(201).json(actorLocation);
         } catch (error) {
             res.status(400).json({ error: error.message });
@@ -42,6 +50,14 @@ class ActorLocationController {
             if (!actorLocation[0]) {
                 return res.status(404).json({ error: 'Actor Location not found' });
             }
+            await ChangeLogService.logChange({
+                entity: 'ActorLocation',
+                changeType: 'update',
+                changeDetails: req.body,
+                userId: req.user.id,
+                username: req.user.username,
+                scriptId: req.params.scriptId
+            });
             res.status(200).json({ message: 'Actor Location updated successfully' });
         } catch (error) {
             res.status(400).json({ error: error.message });
@@ -54,6 +70,14 @@ class ActorLocationController {
             if (!result) {
                 return res.status(404).json({ error: 'Actor Location not found' });
             }
+            await ChangeLogService.logChange({
+                entity: 'ActorLocation',
+                changeType: 'delete',
+                changeDetails: req.body,
+                userId: req.user.id,
+                username: req.user.username,
+                scriptId: req.params.scriptId
+            });
             res.status(200).json({ message: 'Actor Location deleted successfully' });
         } catch (error) {
             res.status(400).json({ error: error.message });

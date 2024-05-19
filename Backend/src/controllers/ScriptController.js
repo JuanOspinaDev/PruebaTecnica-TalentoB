@@ -12,9 +12,11 @@ class ScriptController {
             const script = await scriptService.createScript(req.body);
 
             await ChangeLogService.logChange({
+                entity: 'Script',
                 changeType: 'create',
                 changeDetails: req.body,
                 userId: req.user.id,
+                username: req.user.username,
                 scriptId: script.id
             });
 
@@ -55,6 +57,14 @@ class ScriptController {
             if (!script[0]) {
                 return res.status(404).json({ error: 'Script not found' });
             }
+            await ChangeLogService.logChange({
+                entity: 'Script',
+                changeType: 'update',
+                changeDetails: req.body,
+                userId: req.user.id,
+                username: req.user.username,
+                scriptId: req.params.scriptId
+            });
             res.status(200).json({ message: 'Script updated successfully' });
         } catch (error) {
             res.status(400).json({ error: error.message });

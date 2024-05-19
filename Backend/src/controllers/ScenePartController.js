@@ -9,6 +9,13 @@ class ScenePartController {
         }
         try {
             const scenePart = await ScenePartService.createScenePart(req.body);
+            await ChangeLogService.logChange({
+                entity: 'ScenePart',
+                changeType: 'create',
+                changeDetails: req.body,
+                userId: req.user.id,
+                scriptId: req.params.scriptId
+            });
             res.status(201).json(scenePart);
         } catch (error) {
             res.status(400).json({ error: error.message });
@@ -46,6 +53,13 @@ class ScenePartController {
             if (!scenePart[0]) {
                 return res.status(404).json({ error: 'ScenePart not found' });
             }
+            await ChangeLogService.logChange({
+                entity: 'ScenePart',
+                changeType: 'update',
+                changeDetails: req.body,
+                userId: req.user.id,
+                scriptId: req.params.scriptId
+            });
             res.status(200).json({ message: 'ScenePart updated successfully' });
         } catch (error) {
             res.status(400).json({ error: error.message });
@@ -58,6 +72,14 @@ class ScenePartController {
             if (!result) {
                 return res.status(404).json({ error: 'ScenePart not found' });
             }
+            await ChangeLogService.logChange({
+                entity: 'ScenePart',
+                changeType: 'delete',
+                changeDetails: req.body,
+                userId: req.user.id,
+                username: req.user.username,
+                scriptId: req.params.scriptId
+            });
             res.status(200).json({ message: 'ScenePart deleted successfully' });
         } catch (error) {
             res.status(400).json({ error: error.message });
