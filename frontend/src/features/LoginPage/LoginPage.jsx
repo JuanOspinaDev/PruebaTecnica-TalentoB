@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { GiFeather } from 'react-icons/gi'; 
 import { useAuth } from '../../hooks/useAuth';
-import Modal from '../../components/Modal';
+import Modal from '../../components/Modal/Modal';
 import RegistrationForm from '../Registration/RegistrationForm';
 import './LoginPage.css';
 
@@ -75,7 +75,7 @@ function LoginPage() {
         <input type="password" placeholder="Contraseña" value={password} onChange={e => setPassword(e.target.value)} />
         {errors.password && <div className="error-message">{errors.password}</div>}
 
-        <button type="submit">Iniciar sesión</button>
+        <button type="submit" className='login'>Iniciar sesión</button>
         <div className="links">
           <a href="#!">¿Olvidaste tu contraseña?</a>
           <hr />
