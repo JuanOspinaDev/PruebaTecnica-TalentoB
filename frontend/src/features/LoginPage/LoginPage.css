@@ -20,7 +20,7 @@
     padding-right: 10rem; 
   }
   
-  form {
+  .log-form {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -45,7 +45,7 @@
     margin-bottom: 50px;
   }
   
-  input {
+  .log-input {
     align-self: center;
     width: 100%; 
     padding-top: 0.8rem;
@@ -57,12 +57,12 @@
 
   }
 
-input::placeholder {
+.log-input::placeholder {
     text-align: center; 
     color: #8f8f8f; 
   }
   
-  input:focus {
+  .log-input:focus {
     outline: none;
     border: 3px solid #8a2be2;
   }
@@ -110,7 +110,7 @@ input::placeholder {
     opacity: 0.9;
   }
   
-  input, button {
+  .log-input, button {
     transition: all 0.3s ease;
   }
 

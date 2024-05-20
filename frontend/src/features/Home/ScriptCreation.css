@@ -1,0 +1,37 @@
+.script-creation-section {
+    background: white;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    width: 600px;
+    margin: 90px auto 10px auto; 
+    z-index: 10; 
+  }
+  
+  .script-creation-section form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .script-creation-section input[type="text"],
+  .script-creation-section textarea {
+    border: none;
+    padding: 8px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+  }
+  
+  .script-creation-section input[type="text"]:focus,
+  .script-creation-section textarea:focus {
+    outline: none;
+    box-shadow: none;
+  }
+  
+  .script-creation-section textarea {
+    resize: none; 
+  }
+
+  .custom-button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }

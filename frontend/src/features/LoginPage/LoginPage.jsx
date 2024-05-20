@@ -68,11 +68,11 @@ function LoginPage() {
       </div>
     </div>
     <div className="form-container">
-      <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="Username" value={username} onChange={e => setEmail(e.target.value)} />
+      <form className='log-form' onSubmit={handleSubmit}>
+        <input className= "log-input" type="text" placeholder="Username" value={username} onChange={e => setEmail(e.target.value)} />
         {errors.username && <div className="error-message">{errors.username}</div>}
 
-        <input type="password" placeholder="Contraseña" value={password} onChange={e => setPassword(e.target.value)} />
+        <input className="log-input" type="password" placeholder="Contraseña" value={password} onChange={e => setPassword(e.target.value)} />
         {errors.password && <div className="error-message">{errors.password}</div>}
 
         <button type="submit" className='login'>Iniciar sesión</button>

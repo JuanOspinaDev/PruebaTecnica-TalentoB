@@ -13,6 +13,10 @@ Script.init({
         type: DataTypes.STRING,
         allowNull: false
     },
+    description: {
+        type: DataTypes.TEXT,
+        allowNull: false
+    },
     guionistaId: {
         type: DataTypes.INTEGER,
         allowNull: false,
