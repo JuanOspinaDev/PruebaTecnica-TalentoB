@@ -19,7 +19,7 @@ Character.init({
         references: {
             model: 'Actors',
             key: 'id',
-            onDelete: 'CASCADE', // Elimina Characters cuando se elimina un Actor
+            onDelete: 'CASCADE', 
             onUpdate: 'CASCADE'
         }
     }

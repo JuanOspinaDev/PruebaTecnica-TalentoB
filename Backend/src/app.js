@@ -1,5 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv');
+const cors = require('cors'); 
 const routes = require('./infrastructure/web/routes');
 const sequelize = require('./config/database');
 const errorHandler = require('./infrastructure/web/middlewares/errorHandler');
@@ -8,6 +9,7 @@ dotenv.config();
 
 const app = express();
 
+app.use(cors()); 
 app.use(express.json());
 
 sequelize.sync()

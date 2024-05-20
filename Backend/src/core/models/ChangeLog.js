@@ -43,7 +43,7 @@ ChangeLog.init({
         references: {
             model: 'Scripts',
             key: 'id',
-            onDelete: 'CASCADE', // Elimina ChangeLogs cuando se elimina un Script
+            onDelete: 'CASCADE',
             onUpdate: 'CASCADE'
         }
     }

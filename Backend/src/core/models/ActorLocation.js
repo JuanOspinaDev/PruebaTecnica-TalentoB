@@ -35,7 +35,7 @@ ActorLocation.init({
         references: {
             model: 'SceneParts',
             key: 'id',
-            onDelete: 'CASCADE', // Elimina ActorLocations cuando se elimina un ScenePart
+            onDelete: 'CASCADE', 
             onUpdate: 'CASCADE'
         }
     }

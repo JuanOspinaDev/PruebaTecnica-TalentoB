@@ -19,7 +19,7 @@ Script.init({
         references: {
             model: 'Users',
             key: 'id',
-            onDelete: 'CASCADE', // Elimina Script cuando se elimina un User
+            onDelete: 'CASCADE', 
             onUpdate: 'CASCADE'
         }
     }

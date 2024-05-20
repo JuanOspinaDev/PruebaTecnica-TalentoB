@@ -27,7 +27,7 @@ Dialogue.init({
         references: {
             model: 'SceneParts',
             key: 'id',
-            onDelete: 'CASCADE', // Elimina Dialogue cuando se elimina un ScenePart
+            onDelete: 'CASCADE', 
             onUpdate: 'CASCADE'
         }
     }

@@ -19,7 +19,7 @@ Action.init({
         references: {
             model: 'SceneParts',
             key: 'id',
-            onDelete: 'CASCADE', // Elimina Actions cuando se elimina un ScenePart
+            onDelete: 'CASCADE', 
             onUpdate: 'CASCADE'
         }
     }

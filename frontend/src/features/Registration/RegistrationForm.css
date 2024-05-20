@@ -1,0 +1,105 @@
+
+.reg-form {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .name-row {
+    display: flex; 
+    justify-content: space-between; 
+    width: 100%;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 0.8rem;
+    margin-top: 2px;
+  }
+
+  
+  .name-input {
+    flex: 1; 
+    margin-right: 10px; 
+    padding: 10px;
+    border: 1px solid #ccd0d5;
+    border-radius: 4px;
+  }
+  
+  .name-input:last-child {
+    margin-right: 0; 
+  }
+  
+  .reg-input {
+    width: 100%; 
+    margin-bottom: 10px;
+    border: 1px solid #ccd0d5;
+    border-radius: 4px;
+    padding-left: 0;
+    padding-right: 0;
+    padding: 12px 0px 12px 0px;
+  }
+  
+  .reg-radio-input {
+    margin-right: 5px;
+  }
+  
+  .reg-button {
+    background-color: #1f2328;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .reg-heading {
+    text-align: center;
+    width: 100%;
+    font-size: 30px;
+    margin-bottom: 25px;
+  }
+  
+.role-buttons {
+    display: flex;
+    justify-content: center; 
+    margin: 20px 0;
+    gap: 30px; 
+}
+
+.role-button {
+    background: white;
+    border: 2px solid #1f2328; 
+    color: #1f2328;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    width: 60px; 
+    height: 60px; 
+    border-radius: 50%; 
+    overflow: hidden; 
+    transition: background 0.3s, color 0.3s;
+}
+
+.role-button.active {
+    background: #1f2328; 
+    color: white; 
+}
+
+.role-buttons span {
+    margin-top: 8px; 
+    color: #1f2328; 
+    text-align: center; 
+    display: block; 
+    width: 100%; 
+    font-size: 15px;
+}

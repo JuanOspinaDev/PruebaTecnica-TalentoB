@@ -19,7 +19,7 @@ Scene.init({
         references: {
             model: 'Scripts',
             key: 'id',
-            onDelete: 'CASCADE', // Elimina Scene cuando se elimina un Script
+            onDelete: 'CASCADE', 
             onUpdate: 'CASCADE'
         }
     }

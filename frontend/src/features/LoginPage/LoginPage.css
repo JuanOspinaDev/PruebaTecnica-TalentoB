@@ -1,0 +1,134 @@
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f0f2f5;
+  }
+
+  
+  
+  .login-text {
+    text-align: center;
+    flex: 1;
+    max-width: 500px;
+  }
+  
+  .form-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    padding-right: 10rem; 
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 25px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+    width: 100%;
+    max-width: 380px;
+  }
+  
+  h2 {
+    color: #1f2328;
+    font-size: 75px;
+    margin-bottom: 16px;
+    margin-top: 0;
+  }
+  
+  p {
+    font-size: 28px;
+    color: #1f2328;
+    margin-bottom: 50px;
+  }
+  
+  input {
+    align-self: center;
+    width: 100%; 
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+    margin-bottom: 10px; 
+    border-radius: 6px;
+    border: 1px solid #ccd0d5;
+    transition: border-color 0.3s; 
+
+  }
+
+input::placeholder {
+    text-align: center; 
+    color: #8f8f8f; 
+  }
+  
+  input:focus {
+    outline: none;
+    border: 3px solid #8a2be2;
+  }
+  
+  button {
+    width: 100%;
+    padding: 12px;
+    background-color: #1f2328;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  button.create-new {
+    background-color: #5a1eaa;
+  }
+  
+  .links {
+    width: 100%; 
+    text-align: center; 
+  }
+  
+  .links a {
+    padding-top: 20px;
+    color: #2a75d6;
+    text-decoration: none;
+    font-size: 18px;
+    display: inline-block; 
+    margin-bottom: 20px;
+  }
+  
+  hr {
+    margin: 10px auto; 
+    border-color: #ccd0d5;
+    width: 90%; 
+  }
+
+  button:hover {
+    opacity: 0.9;
+  }
+  
+  input, button {
+    transition: all 0.3s ease;
+  }
+
+  .icon-and-text-container {
+    margin-left: 15%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center; 
+    margin-bottom: 2rem; 
+  }
+
+.feather-icon {
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    background-color: #1f2328; 
+    border-radius: 50%; 
+    padding: 16px; 
+    margin-top: 17%;
+    margin-bottom: 10px;
+  }

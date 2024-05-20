@@ -14,7 +14,7 @@ const ActorPose = sequelize.define('ActorPose', {
         references: {
             model: 'SceneParts', 
             key: 'id',
-            onDelete: 'CASCADE', // Elimina ActorPoses cuando se elimina un ScenePart
+            onDelete: 'CASCADE', 
             onUpdate: 'CASCADE'
         }
     },

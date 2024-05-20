@@ -15,7 +15,7 @@ ScenePart.init({
         references: {
             model: 'Scenes',
             key: 'id',
-            onDelete: 'CASCADE', // Elimina ScenePart cuando se elimina una Scene
+            onDelete: 'CASCADE', 
             onUpdate: 'CASCADE'
         }
     },
