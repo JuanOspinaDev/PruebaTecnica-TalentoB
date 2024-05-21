@@ -6,7 +6,7 @@ class ScriptService {
     }
 
     async getAllScripts() {
-        return await scriptRepository.findAll({ attributes: ['id', 'title', 'genre'] });
+        return await scriptRepository.findAll();
     }
 
     async getScriptById(id) {
@@ -19,6 +19,10 @@ class ScriptService {
 
     async deleteScript(id) {
         return await scriptRepository.delete(id);
+    }
+
+    async getScriptsByGuionistaId(guionistaId) {
+        return await scriptRepository.findAll({ where: { guionistaId } });
     }
 }
 

@@ -82,6 +82,15 @@ class ScriptController {
             res.status(400).json({ error: error.message });
         }
     }
+
+    async getByGuionistaId(req, res) {
+        try {
+            const scripts = await scriptService.getScriptsByGuionistaId(req.params.guionistaId);
+            res.status(200).json(scripts);
+        } catch (error) {
+            res.status(400).json({ error: error.message });
+        }
+    }
 }
 
 module.exports = new ScriptController();

@@ -14,6 +14,14 @@ function RegistrationForm({ closeModal }) {
     role: ''
   });
 
+  const [formData, setFormData] = useState({
+    firstname: '',
+    lastname: '',
+    username: '',
+    password: '',
+    role: ''
+  });
+
   const validate = () => {
     let newErrors = {
       firstname: '',
@@ -41,23 +49,15 @@ function RegistrationForm({ closeModal }) {
     setErrors(newErrors);
     return Object.values(newErrors).every(x => x === ""); 
   };
-  
-  
-  const [formData, setFormData] = useState({
-    firstname: '',
-    lastname: '',
-    username: '',
-    password: '',
-    role: ''
-  });
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleRoleChange = (displayRole) => {
-    const roleValue = displayRole === 'actor' ? 'regular' : 'guionista';
-    setFormData({ ...formData, role: formData.role === roleValue ? '' : roleValue });
+  const handleRoleChange = (role) => {
+    setFormData((prevFormData) => ({ ...prevFormData, role }));
+    console.log("Role set to:", role);
+
   };
 
   const handleSubmit = async (e) => {
@@ -82,7 +82,6 @@ function RegistrationForm({ closeModal }) {
       
       <div className="name-row">
         <input className="reg-input name-input" name="firstname" type="text" placeholder="Nombre" value={formData.firstname} onChange={handleChange} />
-
         <input className="reg-input name-input" name="lastname" type="text" placeholder="Apellido" value={formData.lastname} onChange={handleChange} />
       </div>
       {errors.nameCommon && <div className="error-message">{errors.nameCommon}</div>} 
@@ -95,7 +94,7 @@ function RegistrationForm({ closeModal }) {
 
       <div className="role-buttons">
         <div>
-          <button type="button" className={`role-button ${formData.role === 'regular' ? 'active' : ''}`} onClick={() => handleRoleChange('actor')}>
+          <button type="button" className={`role-button ${formData.role === 'regular' ? 'active' : ''}`} onClick={() => handleRoleChange('regular')}>
           <MdPerson size={24} />
           </button>
           <span>Actor</span>
@@ -110,6 +109,7 @@ function RegistrationForm({ closeModal }) {
       
       <button className="reg-button" type="submit">Registrarte</button>
       {errors.role && <div className="error-message">{errors.role}</div>}
+      {errors.general && <div className="error-message">{errors.general}</div>}
 
     </form>
   );

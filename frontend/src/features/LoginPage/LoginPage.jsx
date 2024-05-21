@@ -6,7 +6,7 @@ import RegistrationForm from '../Registration/RegistrationForm';
 import './LoginPage.css';
 
 function LoginPage() {
-  const [username, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [isModalOpen, setModalOpen] = useState(false);
   const [password, setPassword] = useState('');
   const { login } = useAuth();
@@ -14,23 +14,23 @@ function LoginPage() {
     username: '',
     password: ''
   });
-  
+
   const validate = () => {
     let newErrors = {
       username: '',
       password: ''
     };
-  
+
     if (!username.trim()) {
       newErrors.username = 'El correo electrónico es obligatorio.';
     } else if (username.length < 6) {
       newErrors.username = 'El usuario debe tener al menos 6 caracteres.';
     }
-  
+
     if (password.length < 6) {
       newErrors.password = 'La contraseña debe tener al menos 6 caracteres.';
     }
-  
+
     setErrors(newErrors);
     return Object.values(newErrors).every(x => x === ""); 
   };
@@ -43,7 +43,6 @@ function LoginPage() {
     }
     try {
       await login(username, password);
-      console.log("Ingreso exitoso");
     } catch (error) {
       console.error("Error en el ingreso", error);
       setErrors({ ...errors, general: 'Error al intentar iniciar sesión. Intenta de nuevo.' });
@@ -57,7 +56,7 @@ function LoginPage() {
   const closeModal = () => {
     setModalOpen(false);
   };
-  
+
   return (
   <div className="login-container">
     <div className="icon-and-text-container">
@@ -69,17 +68,17 @@ function LoginPage() {
     </div>
     <div className="form-container">
       <form className='log-form' onSubmit={handleSubmit}>
-        <input className= "log-input" type="text" placeholder="Username" value={username} onChange={e => setEmail(e.target.value)} />
+        <input className= "log-input" type="text" placeholder="Username" value={username} onChange={e => setUsername(e.target.value)} />
         {errors.username && <div className="error-message">{errors.username}</div>}
 
         <input className="log-input" type="password" placeholder="Contraseña" value={password} onChange={e => setPassword(e.target.value)} />
         {errors.password && <div className="error-message">{errors.password}</div>}
 
-        <button type="submit" className='login'>Iniciar sesión</button>
+        <button type="submit" className='buttonlogin' id='login'>Iniciar sesión</button>
         <div className="links">
           <a href="#!">¿Olvidaste tu contraseña?</a>
           <hr />
-          <button type="button" className="create-new" onClick={handleRegister}>Crear cuenta nueva</button>
+          <button type="button" className='buttonlogin' id="create-new" onClick={handleRegister}>Crear cuenta nueva</button>
         </div>
       </form>
     </div>

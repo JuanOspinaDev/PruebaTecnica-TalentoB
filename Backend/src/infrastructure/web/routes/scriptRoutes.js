@@ -36,5 +36,11 @@ router.delete(
     authorizeRole('guionista'),
     scriptController.delete
 );
+router.get(
+    '/scriptwriter/:guionistaId',
+    authMiddleware,
+    authorizeRole('guionista'),
+    scriptController.getByGuionistaId
+);
 
 module.exports = router;

@@ -4,17 +4,20 @@ import './ScriptCreation.css';
 
 const ScriptCreationForm = ({ onAddScript }) => {
   const [scriptTitle, setScriptTitle] = useState('');
-  const [scriptContent, setScriptContent] = useState('');
+  const [scriptDescription, setScriptDescription] = useState('');
+  const [scriptGenre, setScriptGenre] = useState(''); 
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    onAddScript(scriptTitle, scriptContent); 
+    onAddScript({ title: scriptTitle, genre: scriptGenre, description: scriptDescription }); 
     setScriptTitle('');
-    setScriptContent('');
-  };
+    setScriptGenre('');
+    setScriptDescription('');
+  };  
 
   return (
     <div className="script-creation-section">
+      <h3>Crear guion</h3>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -23,14 +26,29 @@ const ScriptCreationForm = ({ onAddScript }) => {
           onChange={(e) => setScriptTitle(e.target.value)}
           className="script-title-input"
         />
+        
         <TextareaAutosize
-          placeholder="Escribe el contenido del guion aquí..."
-          value={scriptContent}
-          onChange={(e) => setScriptContent(e.target.value)}
+          placeholder="Escribe la descripción del guion aquí..."
+          value={scriptDescription}
+          onChange={(e) => setScriptDescription(e.target.value)}
           maxRows={10}
           className="script-content-textarea"
         />
-        <button text="Guardar Guion" type="submit" />
+        <select
+          value={scriptGenre}
+          onChange={(e) => setScriptGenre(e.target.value)}
+          className="script-genre-select"
+        >
+          <option value="">Seleccione el género</option>
+          <option value="comedia">Comedia</option>
+          <option value="drama">Drama</option>
+          <option value="thriller">Thriller</option>
+          <option value="terror">Terror</option>
+          <option value="accion">Accion</option>
+          <option value="ciencia-ficcion">Ciencia Ficción</option>
+          <option value="documental">Documental</option>
+        </select>
+        <button className="buttonscript" type="submit">Guardar Guion</button>
       </form>
     </div>
   );

@@ -22,7 +22,7 @@ const NavBar = ({ searchTerm, onSearchTermChange, onSearch }) => {
         <>
             <nav className='navbar'>
                 <Brand />
-                {location.pathname === '/Home' && (
+                {location.pathname === '/scriptboard' && (
                     <SearchBar 
                         searchTerm={searchTerm}
                         onSearchTermChange={onSearchTermChange}

@@ -5,13 +5,18 @@ export async function authenticate(username, password) {
           headers: {
               'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ username, password }) 
+          body: JSON.stringify({ username, password })
       });
 
       const data = await response.json();
       if (!response.ok) {
           throw new Error(data.message || 'Algo salió mal');
       }
+
+      if (data.token) {
+          localStorage.setItem('token', data.token);
+      }
+      console.log(data.token)
       return data; 
   } catch (error) {
       console.error('Error de autenticación:', error);
