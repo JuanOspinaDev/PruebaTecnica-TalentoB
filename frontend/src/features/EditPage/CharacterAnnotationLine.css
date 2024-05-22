@@ -1,0 +1,32 @@
+.character-annotation-line {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .character-annotation-line .character,
+  .character-annotation-line .annotation {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    font-size: 18px;
+    font-family: 'Courier New', Courier, monospace;
+    margin-right: 10px;
+    color: #333; 
+  }
+  
+  .character-annotation-line .character {
+    text-align: right;
+    outline:none;
+    border:none;
+    text-transform: uppercase 
+  }
+  
+  .character-annotation-line .annotation {
+    text-align: left; 
+    direction: ltr; 
+    outline: none;
+    border: none
+  }
+  

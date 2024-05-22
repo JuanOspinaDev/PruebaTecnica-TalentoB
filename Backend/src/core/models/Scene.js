@@ -5,11 +5,19 @@ const Script = require('./Script');
 class Scene extends Model {}
 
 Scene.init({
-    number: {
+    order: {
         type: DataTypes.INTEGER,
         allowNull: false
     },
-    description: {
+    location: {
+        type: DataTypes.TEXT,
+        allowNull: true
+    },
+    int: {
+        type: DataTypes.TEXT,
+        allowNull: true
+    },
+    time : {
         type: DataTypes.TEXT,
         allowNull: true
     },

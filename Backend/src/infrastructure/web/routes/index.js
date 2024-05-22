@@ -9,7 +9,6 @@ const versionRoutes = require('./versionRoutes');
 const characterRoutes = require('./characterRoutes');
 const actorRoutes = require('./actorRoutes');
 const actionRoutes = require('./actionRoutes');
-const scenePartRoutes = require('./scenePartRoutes');
 const changeLogRoutes = require('./changeLogRoutes');
 
 const router = express.Router();
@@ -24,7 +23,6 @@ router.use('/dialogues', dialogueRoutes);
 router.use('/versions', versionRoutes);
 router.use('/actors', actorRoutes);
 router.use('/actions', actionRoutes);
-router.use('/scene-parts', scenePartRoutes);
 router.use('/change-logs', changeLogRoutes);
 
 module.exports = router;

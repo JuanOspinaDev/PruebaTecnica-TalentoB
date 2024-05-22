@@ -1,0 +1,108 @@
+.editor-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.editor {
+  background-color: #ffffff;
+  margin-top: 20px;
+  width: 100%;
+  max-width: 800px;
+  border: 1px solid #ccc;
+  padding: 20px;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.element {
+  margin: 10px 0;
+  padding: 10px;
+  border: none;
+  width: 80%;
+  resize: none;
+  font-size: 18px;
+  font-family: 'Courier New', Courier, monospace;
+  overflow: hidden;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.element.scene {
+  background-color: #ccc;
+}
+
+.scene-line {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  background-color: #cecece; 
+  padding: 1px;
+  box-sizing: border-box;
+}
+
+.scene-input {
+  flex: 1;
+  padding: 5px;
+  border: none;
+  background: none;
+  font-size: 18px;
+  font-family: 'Courier New', Courier, monospace;
+  text-align: center;
+  box-sizing: border-box;
+  text-transform: uppercase;
+}
+
+.scene-input::placeholder {
+  color: #757575; 
+}
+
+.scene-input.location {
+  margin-right: 10px; 
+}
+
+.scene-input.place {
+  margin-right: 10px; 
+}
+
+.scene-line input:hover,
+.scene-line input:focus {
+  background-color: transparent; 
+  outline: none; 
+}
+
+
+.dialogue, .action {
+  display: flex;
+  align-items: center;
+}
+
+.element.dialogue {
+  outline: none;
+}
+
+.annotation-button {
+  position: absolute;
+  right: -40px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #ccc;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  opacity: 0.5;
+  transition: opacity 0.3s;
+}
+
+.annotation-button.active {
+  opacity: 1;
+  background-color: #666;
+}
+
+.character-annotation-line .character.centered {
+  text-align: center;
+}

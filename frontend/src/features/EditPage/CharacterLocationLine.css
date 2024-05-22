@@ -1,0 +1,27 @@
+.character-location-line {
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+    font-size: 18px;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  
+  .character-location-line .element {
+    margin-right: 5px;
+    font-size: 18px;
+  font-family: 'Courier New', Courier, monospace;
+  }
+  
+  .character-location-line .location-input {
+    font-size: 18px;
+  font-family: 'Courier New', Courier, monospace;
+    width: 70px;
+  }
+  
+  .elementcharacter {
+    width: 100px;
+    border: none;
+    outline: none;
+    font-size: 18px;
+  font-family: 'Courier New', Courier, monospace;
+  }

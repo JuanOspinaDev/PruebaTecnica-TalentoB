@@ -1,6 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../../config/database');
-const ScenePart = require('./ScenePart');
+const Scene = require('./Scene');
 
 class Action extends Model {}
 
@@ -13,11 +13,11 @@ Action.init({
         type: DataTypes.INTEGER,
         allowNull: false
     },
-    scenePartId: {
+    sceneId: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: 'SceneParts',
+            model: 'Scenes',
             key: 'id',
             onDelete: 'CASCADE', 
             onUpdate: 'CASCADE'
@@ -28,7 +28,7 @@ Action.init({
     modelName: 'Action'
 });
 
-Action.belongsTo(ScenePart, { foreignKey: 'scenePartId', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
-ScenePart.hasMany(Action, { foreignKey: 'scenePartId', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
+Action.belongsTo(Scene, { foreignKey: 'sceneId', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
+Scene.hasMany(Action, { foreignKey: 'sceneId', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
 
 module.exports = Action;

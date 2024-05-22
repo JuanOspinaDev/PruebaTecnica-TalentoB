@@ -1,6 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../../config/database');
-const ScenePart = require('./ScenePart');
+const Scene = require('./Scene');
 
 class Dialogue extends Model {}
 
@@ -17,15 +17,15 @@ Dialogue.init({
         type: DataTypes.STRING,
         allowNull: true
     },
-    characterId: {
-        type: DataTypes.INTEGER,
+    character: {
+        type: DataTypes.STRING,
         allowNull: false
     },
-    scenePartId: {
+    sceneId: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: 'SceneParts',
+            model: 'Scenes',
             key: 'id',
             onDelete: 'CASCADE', 
             onUpdate: 'CASCADE'
@@ -36,7 +36,7 @@ Dialogue.init({
     modelName: 'Dialogue'
 });
 
-Dialogue.belongsTo(ScenePart, { foreignKey: 'scenePartId', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
-ScenePart.hasMany(Dialogue, { foreignKey: 'scenePartId', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
+Dialogue.belongsTo(Scene, { foreignKey: 'sceneId', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
+Scene.hasMany(Dialogue, { foreignKey: 'sceneId', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
 
 module.exports = Dialogue;

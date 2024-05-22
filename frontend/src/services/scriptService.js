@@ -76,3 +76,53 @@ export const addScript = async (scriptData) => {
         throw error;
     }
 };
+
+export const deleteScript = async (id) => {
+    const token = localStorage.getItem('token');
+    try {
+        const response = await fetch(`${baseURL}${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `${token}`
+            }
+        });
+        if (!response.ok) {
+            throw new Error('Failed to delete script');
+        }
+    } catch (error) {
+        console.error("Failed to delete script: ", error);
+        throw error;
+    }
+};
+
+
+export const saveScript = async (groupedElements) => {
+    try {
+      const response = await fetch('/api/save-script', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(groupedElements),
+      });
+      const data = await response.json();
+      console.log('Success:', data);
+      return data;
+    } catch (error) {
+      console.error('Error:', error);
+      throw error;
+    }
+  };
+
+export const saveScene = async (scene) => {
+    console.log('Saving scene:', scene); 
+  };
+  
+  export const saveElement = async (element) => {
+    console.log('Saving element:', element); 
+  };
+  
+  export const saveDialogue = async (dialogue) => {
+    console.log('Saving dialogue:', dialogue); 
+  };
+  
