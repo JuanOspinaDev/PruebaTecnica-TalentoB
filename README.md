@@ -62,3 +62,4 @@ Este proyecto es un software de gestión de guiones para equipos de producción 
 
 ### Editor de Guiones
 ![Editor de Guiones](./EditorPage.png)
+![Editor de Guiones](./Editor.png)
