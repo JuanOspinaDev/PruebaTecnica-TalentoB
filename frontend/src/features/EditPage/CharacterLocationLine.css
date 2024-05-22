@@ -9,19 +9,20 @@
   .character-location-line .element {
     margin-right: 5px;
     font-size: 18px;
-  font-family: 'Courier New', Courier, monospace;
+    font-family: 'Courier New', Courier, monospace;
   }
   
   .character-location-line .location-input {
     font-size: 18px;
-  font-family: 'Courier New', Courier, monospace;
+    font-family: 'Courier New', Courier, monospace;
     width: 70px;
   }
   
-  .elementcharacter {
+  .element.character {
     width: 100px;
     border: none;
     outline: none;
     font-size: 18px;
-  font-family: 'Courier New', Courier, monospace;
+    font-family: 'Courier New', Courier, monospace;
   }
+  

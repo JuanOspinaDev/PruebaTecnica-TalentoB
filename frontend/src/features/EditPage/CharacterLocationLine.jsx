@@ -22,7 +22,7 @@ const CharacterLocationLine = ({ element, handleChange, handleKeyDown }) => {
     <div className="character-location-line">
       <input
         type="text"
-        className="elementcharacter"
+        className="element character"
         value={element.character}
         onChange={(event) => handleChange(element.id, 'character', event.target.value)}
         onKeyDown={(event) => handleKeyDown(event, element.id, 'character')}
@@ -55,26 +55,26 @@ const CharacterLocationLine = ({ element, handleChange, handleKeyDown }) => {
       <input
         type="text"
         className="element location-input"
-        value={element.location.rotX}
-        onChange={(event) => handleLocationChange(element.id, 'rotX', event.target.value)}
-        onKeyDown={(event) => handleKeyDown(event, element.id, 'rotX')}
-        placeholder="rotX"
+        value={element.location.rotateX}
+        onChange={(event) => handleLocationChange(element.id, 'rotateX', event.target.value)}
+        onKeyDown={(event) => handleKeyDown(event, element.id, 'rotateX')}
+        placeholder="rotateX"
       />
       <input
         type="text"
         className="element location-input"
-        value={element.location.rotY}
-        onChange={(event) => handleLocationChange(element.id, 'rotY', event.target.value)}
-        onKeyDown={(event) => handleKeyDown(event, element.id, 'rotY')}
-        placeholder="rotY"
+        value={element.location.rotateY}
+        onChange={(event) => handleLocationChange(element.id, 'rotateY', event.target.value)}
+        onKeyDown={(event) => handleKeyDown(event, element.id, 'rotateY')}
+        placeholder="rotateY"
       />
       <input
         type="text"
         className="element location-input"
-        value={element.location.rotZ}
-        onChange={(event) => handleLocationChange(element.id, 'rotZ', event.target.value)}
-        onKeyDown={(event) => handleKeyDown(event, element.id, 'rotZ')}
-        placeholder="rotZ"
+        value={element.location.rotateZ}
+        onChange={(event) => handleLocationChange(element.id, 'rotateZ', event.target.value)}
+        onKeyDown={(event) => handleKeyDown(event, element.id, 'rotateZ')}
+        placeholder="rotateZ"
       />
     </div>
   );

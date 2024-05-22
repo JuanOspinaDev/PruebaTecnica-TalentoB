@@ -27,6 +27,6 @@ const ActorPose = sequelize.define('ActorPose', {
 });
 
 ActorPose.belongsTo(Scene, { foreignKey: 'sceneId', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
-ScenePart.hasMany(ActorPose, { foreignKey: 'sceneId', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
+Scene.hasMany(ActorPose, { foreignKey: 'sceneId', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
 
 module.exports = ActorPose;

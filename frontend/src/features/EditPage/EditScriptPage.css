@@ -1,3 +1,5 @@
+/* EditScriptPage.css */
+
 .editor-container {
   display: flex;
   flex-direction: column;
@@ -75,7 +77,6 @@
   outline: none; 
 }
 
-
 .dialogue, .action {
   display: flex;
   align-items: center;
@@ -105,4 +106,42 @@
 
 .character-annotation-line .character.centered {
   text-align: center;
+}
+
+.buttons-container {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.save-button,
+.exit-button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  margin-top: 20px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  color: white; 
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.save-button {
+  background-color: #8a2be2;
+}
+
+.save-button:hover {
+  background-color: #6c1bb5; 
+}
+
+.exit-button {
+  background-color: #f44336; 
+}
+
+.exit-button:hover {
+  background-color: #d32f2f; 
 }

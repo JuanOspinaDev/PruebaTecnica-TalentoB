@@ -1,41 +1,34 @@
-import { jwtDecode } from 'jwt-decode';
+import {jwtDecode} from 'jwt-decode';
 
 const getGuionistaIdFromToken = () => {
     const token = localStorage.getItem('token');
-    console.log(token)
     if (token) {
         const decodedToken = jwtDecode(token);
-        console.log(decodedToken.user)
-        console.log(decodedToken.user.id)
         return decodedToken.user.id; 
     }
     return null;
 };
 
-
 const baseURL = 'http://localhost:3000/api/scripts/'; 
+const baseURLScene = 'http://localhost:3000/api/'; 
 
+const getHeaders = () => {
+  const token = localStorage.getItem('token');
+  return {
+    'Content-Type': 'application/json',
+    'Authorization': `${token}`
+  };
+};
 
 export const fetchScripts = async () => {
     try {
-        const token = localStorage.getItem('token'); 
         const guionistaId = getGuionistaIdFromToken(); 
-
-        if (!guionistaId) {
-            throw new Error("Guionista ID not found");
-        }
+        if (!guionistaId) throw new Error("Guionista ID not found");
 
         const urlWithGuionistaId = `${baseURL}scriptwriter/${guionistaId}`;
-        console.log(urlWithGuionistaId)
-        const response = await fetch(urlWithGuionistaId, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `${token}` 
-            },
-        });
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
+        const response = await fetch(urlWithGuionistaId, { headers: getHeaders() });
+        if (!response.ok) throw new Error('Network response was not ok');
+
         const scripts = await response.json();
         return scripts;
     } catch (error) {
@@ -45,30 +38,18 @@ export const fetchScripts = async () => {
 };
 
 export const addScript = async (scriptData) => {
-    const token = localStorage.getItem('token'); 
     const guionistaId = getGuionistaIdFromToken(); 
+    if (!guionistaId) throw new Error("Guionista ID not found");
 
-    if (!guionistaId) {
-        throw new Error("Guionista ID not found");
-    }
-
-    const script = {
-        ...scriptData,
-        guionistaId  
-    };
-
+    const script = { ...scriptData, guionistaId };
     try {
         const response = await fetch(`${baseURL}`, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `${token}`  
-            },
+            headers: getHeaders(),
             body: JSON.stringify(script)
         });
-        if (!response.ok) {
-            throw new Error('Failed to create script');
-        }
+        if (!response.ok) throw new Error('Failed to create script');
+
         const newScript = await response.json();
         return newScript;
     } catch (error) {
@@ -78,51 +59,100 @@ export const addScript = async (scriptData) => {
 };
 
 export const deleteScript = async (id) => {
-    const token = localStorage.getItem('token');
     try {
         const response = await fetch(`${baseURL}${id}`, {
             method: 'DELETE',
-            headers: {
-                'Authorization': `${token}`
-            }
+            headers: getHeaders()
         });
-        if (!response.ok) {
-            throw new Error('Failed to delete script');
-        }
+        if (!response.ok) throw new Error('Failed to delete script');
     } catch (error) {
         console.error("Failed to delete script: ", error);
         throw error;
     }
 };
 
-
-export const saveScript = async (groupedElements) => {
-    try {
-      const response = await fetch('/api/save-script', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(groupedElements),
-      });
-      const data = await response.json();
-      console.log('Success:', data);
-      return data;
-    } catch (error) {
-      console.error('Error:', error);
-      throw error;
-    }
-  };
-
 export const saveScene = async (scene) => {
-    console.log('Saving scene:', scene); 
-  };
-  
-  export const saveElement = async (element) => {
-    console.log('Saving element:', element); 
-  };
-  
-  export const saveDialogue = async (dialogue) => {
-    console.log('Saving dialogue:', dialogue); 
-  };
-  
+    try {
+        const id = scene.scriptId;
+        console.log(scene);
+        const response = await fetch(`${baseURLScene}scenes/${id}`, {
+            method: 'POST',
+            headers: getHeaders(),
+            body: JSON.stringify(scene)
+        });
+        const data = await response.json();
+        if (!response.ok) {
+            console.error('Error:', data);
+            throw new Error('Failed to save scene');
+        }
+        scene.id = data.id
+        console.log(scene.id)
+        console.log('Success:', data);
+        return data;
+    } catch (error) {
+        console.error('Error:', error);
+        throw error;
+    }
+};
+
+export const saveDialogue = async (dialogue) => {
+    try {
+        const id = dialogue.scriptId;
+        console.log(dialogue);
+        const response = await fetch(`${baseURLScene}dialogues/${id}`, {
+            method: 'POST',
+            headers: getHeaders(),
+            body: JSON.stringify(dialogue)
+        });
+        const data = await response.json();
+        if (!response.ok) {
+            console.error('Error:', data);
+            throw new Error('Failed to save dialogue');
+        }
+        console.log('Success:', data);
+        return data;
+    } catch (error) {
+        console.error('Error:', error);
+        throw error;
+    }
+};
+
+export const saveLocation = async (location) => {
+    try {
+        const response = await fetch(`${baseURLScene}location`, {
+            method: 'POST',
+            headers: getHeaders(),
+            body: JSON.stringify(location)
+        });
+        const data = await response.json();
+        if (!response.ok) {
+            console.error('Error:', data);
+            throw new Error('Failed to save location');
+        }
+        console.log('Success:', data);
+        return data;
+    } catch (error) {
+        console.error('Error:', error);
+        throw error;
+    }
+};
+
+export const saveAction = async (action) => {
+    try {
+        const response = await fetch(`${baseURLScene}action`, {
+            method: 'POST',
+            headers: getHeaders(),
+            body: JSON.stringify(action)
+        });
+        const data = await response.json();
+        if (!response.ok) {
+            console.error('Error:', data);
+            throw new Error('Failed to save action');
+        }
+        console.log('Success:', data);
+        return data;
+    } catch (error) {
+        console.error('Error:', error);
+        throw error;
+    }
+};

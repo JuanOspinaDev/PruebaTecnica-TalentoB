@@ -2,6 +2,7 @@ const Scene = require('../../core/models/Scene');
 
 class SceneRepository {
     async create(sceneData) {
+        console.log(sceneData)
         return await Scene.create(sceneData);
     }
 

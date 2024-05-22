@@ -1,9 +1,9 @@
 const actorLocationRepository = require('../../infrastructure/databases/ActorLocationRepository');
-const scenePartRepository = require('../../infrastructure/databases/ScenePartRepository');
+const sceneRepository = require('../../infrastructure/databases/SceneRepository');
 
 class ActorLocationService {
     async createActorLocation(sceneId, locationData) {
-        const scene = await scenePartRepository.findById(sceneId);
+        const scene = await sceneRepository.findById(sceneId);
         if (!scene) {
             throw new Error('Scene not found');
         }

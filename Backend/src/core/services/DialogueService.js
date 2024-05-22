@@ -1,9 +1,9 @@
 const dialogueRepository = require('../../infrastructure/databases/DialogueRepository');
-const scenePartRepository = require('../../infrastructure/databases/ScenePartRepository');
+const sceneRepository = require('../../infrastructure/databases/SceneRepository');
 
 class DialogueService {
     async createDialogue(dialogueData) {
-        const scene = await scenePartRepository.findById(dialogueData.scenePartId);
+        const scene = await sceneRepository.findById(dialogueData.sceneId);
         if (!scene) {
             throw new Error('Scene not found');
         }

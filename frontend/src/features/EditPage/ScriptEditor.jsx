@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import Toolbar from './ToolBar';
 import SceneLine from './SceneLine';
 import CharacterAnnotationLine from './CharacterAnnotationLine';
@@ -6,8 +7,12 @@ import CharacterLocationLine from './CharacterLocationLine';
 import AutoExpandingTextarea from './AutoExpandingTextarea';
 import { v4 as uuidv4 } from 'uuid';
 import './EditScriptPage.css';
+import { saveScene, saveDialogue, saveLocation, saveAction } from '../../services/scriptService';
 
 function ScriptEditor() {
+  const { id: scriptIdParam } = useParams(); 
+  const scriptId = Number(scriptIdParam);
+  const navigate = useNavigate(); 
   const [elements, setElements] = useState([{
     id: uuidv4(),
     type: 'scene',
@@ -127,7 +132,6 @@ function ScriptEditor() {
   };
 
   const saveElements = async () => {
-    const scriptId = '123'; 
     const groupedElements = [];
     let currentScene = null;
     let sceneOrder = 0;
@@ -136,14 +140,14 @@ function ScriptEditor() {
       if (element.type === 'scene') {
         sceneOrder++;
         const scene = {
-          id: element.id,
           int: element.subfields.location,
+          number: 1,
           location: element.subfields.place,
           time: element.subfields.time,
           order: sceneOrder,
-          scriptId: scriptId,
+          scriptId: scriptId, 
         };
-        console.log('Saving scene:', scene); 
+        await saveScene(scene);
         currentScene = {
           scene: scene,
           children: [],
@@ -152,27 +156,26 @@ function ScriptEditor() {
       } else if (element.type === 'dialogo') {
         const relatedCharacterAnnotation = elements.find(e => e.commonId === element.commonId && e.type === 'character-annotation');
         const dialogue = {
-          id: element.id, 
           dialogue: element.content,
           character: relatedCharacterAnnotation ? relatedCharacterAnnotation.content : '',
           annotation: relatedCharacterAnnotation ? relatedCharacterAnnotation.annotation.replace(/^\(|\)$/g, '') : '',
           sceneId: currentScene.scene.id,
           order: currentScene.children.length + 1,
+          scriptId: scriptId, 
         };
-        console.log('Saving dialogue:', dialogue); 
+        await saveDialogue(dialogue);
         currentScene.children.push(dialogue);
       } else if (element.type === 'action') {
         const action = {
-          id: element.id, 
           description: element.content,
           sceneId: currentScene.scene.id,
           order: currentScene.children.length + 1,
+          scriptId: scriptId, 
         };
-        console.log('Saving action:', action); 
+        await saveAction(action);
         currentScene.children.push(action);
       } else if (element.type === 'location') {
         const location = {
-          id: element.id, 
           x: element.location.x,
           y: element.location.y,
           z: element.location.z,
@@ -181,22 +184,28 @@ function ScriptEditor() {
           rotationZ: element.location.rotateZ,
           sceneId: currentScene.scene.id,
           order: currentScene.children.length + 1,
+          scriptId: scriptId, 
         };
-        console.log('Saving location:', location); 
+        await saveLocation(location);
         currentScene.children.push(location);
       } else if (currentScene) {
         const elementOrder = currentScene.children.length + 1;
         const childElement = {
           ...element,
           order: elementOrder,
-          sceneId: currentScene.scene.id, 
+          sceneId: currentScene.scene.id,
+          scriptId: scriptId, 
         };
-        console.log('Saving element:', childElement);
         currentScene.children.push(childElement);
       }
     }
 
     console.log('Grouped elements:', groupedElements); 
+  };
+
+
+  const handleExit = () => {
+    navigate('/scriptboard');
   };
 
   return (
@@ -206,7 +215,8 @@ function ScriptEditor() {
         isAnnotationEnabled={!!focusedElementId} 
         handleAnnotationClick={handleAnnotationClick}
       />
-      <button onClick={saveElements}>Guardar</button>
+      <button className="save-button" onClick={saveElements}>Guardar</button>
+      <button className="exit-button" onClick={handleExit}>Salir</button>
       <div className="editor">
         {elements.map((element, index) => (
           element.type === 'scene' ? (

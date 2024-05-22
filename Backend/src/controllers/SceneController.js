@@ -9,8 +9,15 @@ class SceneController {
             return res.status(400).json({ errors: errors.array() });
         }
         try {
-            const scene = await sceneService.createScene(req.body);
+            const exist = await sceneService.getSceneById(req.body.id);
+            if (exist) {
+                return res.status(201).json(exist);;
+            }
+            
 
+
+            const scene = await sceneService.createScene(req.body);
+            
             await ChangeLogService.logChange({
                 entity: 'Scene',
                 changeType: 'create',
